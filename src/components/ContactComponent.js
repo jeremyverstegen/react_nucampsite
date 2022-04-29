@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Fade } from 'react-animation-components';
+import TypeAnimation  from 'react-type-animation';
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
@@ -68,10 +70,15 @@ class Contact extends Component {
                 </div>
                 <div className="row row-content">
                     <div className="col-12">
-                        <h2>Send us your Feedback</h2>
-                        <hr />
+                        <TypeAnimation
+                            cursor={true}
+                            sequence={['Send us your Feedback', 1000]}
+                            wrapper='h2'
+                        />
+                        <hr /> 
                     </div>
                     <div className="col-md-10">
+                    <Fade in>
                         <Form model="feedbackForm" onSubmit={values => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="firstName" md={2}>First Name</Label>
@@ -211,6 +218,7 @@ class Contact extends Component {
                                 </Col>
                             </Row>
                         </Form>
+                        </Fade>
                     </div>
                 </div>
             </div>
